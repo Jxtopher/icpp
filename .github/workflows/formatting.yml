@@ -1,0 +1,34 @@
+name: Formatting
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - '**.cpp'
+      - '**.hpp'
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  formatting:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
+
+    - name: Install package
+      run: sudo apt-get -y install clang-format-11
+
+    - name: Format
+      run: |
+        clang-format-11 -style=file -i $(find test/unit/ src/ include/ -type f)
+
+    - name: Commit report
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git commit -am "Automated formatting" || true
+        git push || true

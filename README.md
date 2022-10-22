@@ -1,1 +1,25 @@
-# icpp
+# Interactive CPP
+
+## Installation
+
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/jxtopher/icpp/main/install.sh)"
+```
+
+## Features
+
+- [x] Create temporary source file, compile and execute the program
+- [x] History of lines write by user
+- [x] Count and print nombre of code lines
+- [x] Code source colorization
+- [x] wildcard for execute external command
+- [x] Automatic inclusion
+- [ ] Possibility to include external sources
+
+## Keywords
+
+!, ?, exit, reset, reset-on, reset-off
+
+## ICPP Example
+
+Test your regex.
