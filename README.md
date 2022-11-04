@@ -1,4 +1,4 @@
-# Interactive CPP
+# Interactive CPP [![CMake](https://github.com/Jxtopher/icpp/actions/workflows/build.yml/badge.svg)](https://github.com/Jxtopher/icpp/actions/workflows/build.yml)
 
 ## Installation
 
