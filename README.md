@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/jxtopher/icpp/main/install.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/jxtopher/icpp/main/install.sh)"
 ```
 
 ## Features

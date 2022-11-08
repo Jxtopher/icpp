@@ -18,7 +18,12 @@ mkdir -p icpp/build
 cd icpp/build || exit
 cmake ..
 make
-sudo make install
+
+if [ "$EUID" -ne 0 ]
+  then sudo make install
+  else make install
+fi
+
 
 popd || exit
 rm -rf icpp
