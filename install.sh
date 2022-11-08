@@ -9,8 +9,9 @@ do
     fi
 done
 
-cd /tmp || exit
 pushd .
+cd /tmp || exit
+
 
 git clone https://github.com/jxtopher/icpp
 mkdir -p icpp/build
