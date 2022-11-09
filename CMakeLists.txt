@@ -60,7 +60,7 @@ target_link_libraries(${PROJECT_NAME} ${CMAKE_THREAD_LIBS_INIT})
 pkg_check_modules(CPPUNIT cppunit REQUIRED)
 
 enable_testing()
-file(GLOB_RECURSE ALL_SOURCE_FILES  "test/unit/*.cpp")
+file(GLOB_RECURSE ALL_SOURCE_FILES  "test/*.cpp")
 foreach (SOURCE_FILE ${ALL_SOURCE_FILES})
     get_filename_component(NAME_FILE ${SOURCE_FILE} NAME_WE)
     add_executable(${NAME_FILE}.test ${SOURCE_FILE})
@@ -74,17 +74,6 @@ foreach (SOURCE_FILE ${ALL_SOURCE_FILES})
     )
     set_target_properties(${NAME_FILE}.test PROPERTIES COMPILE_FLAGS "${FLAGS} ${COV_FLAGS}")
     add_test(NAME ${NAME_FILE} COMMAND ${NAME_FILE}.test WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
-endforeach()
-
-###############################################################################
-# Globals tests
-###############################################################################
-find_package (Python3 COMPONENTS Interpreter Development)
-
-file(GLOB LIST_OF_FILES  test/integration/*.py)
-foreach(PATH_FILE  ${LIST_OF_FILES})
-    get_filename_component(FILE ${PATH_FILE} NAME)
-    add_test(NAME ${FILE} COMMAND ${Python3_EXECUTABLE} ${PATH_FILE} "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-main" WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
 endforeach()
 
 ###############################################################################
