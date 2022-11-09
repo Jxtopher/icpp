@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for cmd in "git" "cmake" "make" "g++"
+for cmd in "git" "cmake" "make" "g++" "pkg-config"
 do
     if ! $(command -v $cmd &> /dev/null)
     then
@@ -17,7 +17,7 @@ git clone https://github.com/jxtopher/icpp
 mkdir -p icpp/build
 cd icpp/build || exit
 cmake ..
-make
+make icpp
 
 if [ "$EUID" -ne 0 ]
   then sudo make install

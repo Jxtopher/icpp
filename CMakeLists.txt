@@ -57,8 +57,9 @@ target_link_libraries(${PROJECT_NAME} ${CMAKE_THREAD_LIBS_INIT})
 ###############################################################################
 # Tests
 ###############################################################################
-pkg_check_modules(CPPUNIT cppunit REQUIRED)
+pkg_check_modules(CPPUNIT cppunit QUIET)
 
+IF (CPPUNIT_FOUND)
 enable_testing()
 file(GLOB_RECURSE ALL_SOURCE_FILES  "test/*.cpp")
 foreach (SOURCE_FILE ${ALL_SOURCE_FILES})
@@ -75,7 +76,11 @@ foreach (SOURCE_FILE ${ALL_SOURCE_FILES})
     set_target_properties(${NAME_FILE}.test PROPERTIES COMPILE_FLAGS "${FLAGS} ${COV_FLAGS}")
     add_test(NAME ${NAME_FILE} COMMAND ${NAME_FILE}.test WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
 endforeach()
-
+else (CPPUNIT_FOUND)
+   if (CppUnit_FIND_REQUIRED)
+      MESSAGE(FATAL_ERROR "Could not find CppUnit")
+   endif (CppUnit_FIND_REQUIRED)
+endif (CPPUNIT_FOUND)
 ###############################################################################
 # Install
 ###############################################################################
