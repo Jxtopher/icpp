@@ -2,7 +2,7 @@
 
 for cmd in "git" "cmake" "make" "g++" "pkg-config"
 do
-    if ! $(command -v $cmd &> /dev/null)
+    if ! command -v "$cmd" &> /dev/null
     then
         echo "$cmd could not be found"
         exit
