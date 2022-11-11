@@ -15,6 +15,7 @@ class Brackets {
         return true;  // parenthesis == 0 && square_brackets == 0 &&
                       // curly_brackets == 0 && single_quotes && double_quotes;
     }
+
     void analysis(unsigned char c, bool revert = false) {
         if (single_quotes && double_quotes) {
             if (c == '(')

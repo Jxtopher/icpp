@@ -7,6 +7,9 @@
 #include "dict.hpp"
 
 namespace icpp {
+/**
+ * @brief Analyzes the code and detects the libraries to use
+ */
 class Headers : public std::vector<std::string> {
  public:
     void code_analysis(const std::string &code_line) {

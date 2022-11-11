@@ -100,32 +100,33 @@ class InputConsole {
         }
     }
 
+    // Print the line with the colorarisation and good position of cursor
     void text(const std::string &current_line, uint cursor_position = 0) {
-        if (cursor_position >= 0) {
-            uint mark;
-            const char *color;
-            std::tie(mark, color) = colorization(current_line, 0);
+        if (cursor_position < 0) return;
+        
+        uint mark;
+        const char *color;
+        std::tie(mark, color) = colorization(current_line, 0);
 
-            bool state = mark != 0;
-            for (uint i = 0; i < current_line.size() - cursor_position; i++) {
-                if (mark == 0) {
-                    printf("%s", term::color::NO_COLOR);
-                    std::tie(mark, color) = colorization(current_line, i);
-                    if (mark != 0) {
-                        state = true;
-                    }
+        bool state = mark != 0;
+        for (uint i = 0; i < current_line.size() - cursor_position; i++) {
+            if (mark == 0) {
+                printf("%s", term::color::NO_COLOR);
+                std::tie(mark, color) = colorization(current_line, i);
+                if (mark != 0) {
+                    state = true;
                 }
-                if (mark > 0) {
-                    if (state) {
-                        printf("%s", color);
-                        state = false;
-                    }
-                    mark--;
-                }
-                printf("%c", current_line[i]);
             }
-            printf("%s", term::color::NO_COLOR);
+            if (mark > 0) {
+                if (state) {
+                    printf("%s", color);
+                    state = false;
+                }
+                mark--;
+            }
+            printf("%c", current_line[i]);
         }
+        printf("%s", term::color::NO_COLOR);
     }
 
     std::string operator()(uint &num_line) {
@@ -141,6 +142,7 @@ class InputConsole {
             if (char_0 == '\033') {
                 getchar();
                 char char_2 = getchar();
+
 
                 switch (char_2) {
                     case 'A':  // Arrow up
@@ -166,6 +168,20 @@ class InputConsole {
                     case 'D':  // Arrow left
                         if (cursor_left_right < current_line.size())
                             cursor_left_right++;
+                        break;
+                    case '3': // "Suppr"
+                        break;
+                    case 'F': // "Fin"
+                        cursor_left_right = 0;
+                        break;
+                    case '6': // "PgSv"
+                        break;
+                    case '5': // "PgPr"
+                        break;
+                    case 'H': // "Orig"
+                        cursor_left_right = current_line.size();
+                        break;
+                    case '2': // "Inser"
                         break;
                     default:
                         throw std::runtime_error(

@@ -11,7 +11,7 @@ class BufferToggle {
     struct termios t;
 
  public:
-    // Disable press enter before proceeding to the
+    // Disable press enter before proceeding
     void off(void) {
         tcgetattr(STDIN_FILENO, &t);
         t.c_lflag &= static_cast<tcflag_t>(~ICANON & ~ECHO);

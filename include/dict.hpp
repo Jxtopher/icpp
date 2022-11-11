@@ -6,7 +6,9 @@
 #include <vector>
 
 namespace icpp {
-
+/**
+ * @brief Keyword dictionary for colonization and library include detection
+ */
 namespace dict {
 namespace native {
 static const std::vector<std::string> keywords{"exit", "reset"};

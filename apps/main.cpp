@@ -1,21 +1,21 @@
 #include <fcntl.h>
-#include <stdlib.h>  // mkostemp
+#include <stdlib.h>     // mkostemp
 #include <string.h>
 #include <sys/ioctl.h>
-#include <sys/stat.h>  // O_WRONLY
+#include <sys/stat.h>   // O_WRONLY
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <termios.h>
 #include <threads.h>
-#include <unistd.h>  // read
+#include <unistd.h>     // read
 
 #include <cassert>
 #include <chrono>
-#include <cstdio>   // perror
-#include <cstring>  // size_t
+#include <cstdio>       // perror
+#include <cstring>      // size_t
 #include <fstream>
 #include <iostream>
-#include <regex>  //
+#include <regex>
 #include <stdexcept>
 #include <stop_token>
 #include <string>
@@ -189,7 +189,7 @@ int main(int argc, char **argv, char **envp) {
             write(STDOUT_FILENO, buff, size);
         }
 
-        // Execution
+        // Execution of code
         create_child(binary_file_path, {""}, envp);
         std::jthread thread_object2(sandglass);
         waitpid(pID, &status, 0);
