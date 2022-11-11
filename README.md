@@ -3,7 +3,7 @@
 
 ## How to use it
 
-## Installation
+## Installation in Debian/Ubuntu
 
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/jxtopher/icpp/main/install.sh)"
