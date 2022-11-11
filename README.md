@@ -40,7 +40,7 @@ My message
 1
 [1]: <<std::regex_match ("softwareTesting", std::regex("(xoft)(.*)") );
 0
-```cpp
+```
 
 ## Features
 
