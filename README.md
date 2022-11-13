@@ -36,7 +36,7 @@ My message
 - Try your regex
 
 ```cpp
-[0]: <<std::regex_match ("softwareTesting", std::regex("(xoft)(.*)") );
+[0]: <<std::regex_match ("softwareTesting", std::regex("(soft)(.*)") );
 1
 [1]: <<std::regex_match ("softwareTesting", std::regex("(xoft)(.*)") );
 0

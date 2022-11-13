@@ -6,6 +6,7 @@
 #include <stdexcept>  // std::runtime_error
 #include <string>     // std::string
 #include <tuple>      // std::tuple
+#include <iostream>
 
 #include "brackets.hpp"
 #include "buffer_toggle.hpp"
@@ -170,18 +171,31 @@ class InputConsole {
                             cursor_left_right++;
                         break;
                     case '3': // "Suppr"
+                        {
+                            getchar();
+                            if (cursor_left_right > 0) {
+                                auto it = current_line.begin();
+                                std::advance(it,
+                                            current_line.size() - cursor_left_right);
+                                cursor_left_right--;
+                                current_line.erase(it);
+                            }
+                        }
                         break;
                     case 'F': // "Fin"
                         cursor_left_right = 0;
                         break;
                     case '6': // "PgSv"
+                        getchar();
                         break;
                     case '5': // "PgPr"
+                        getchar();
                         break;
                     case 'H': // "Orig"
                         cursor_left_right = current_line.size();
                         break;
                     case '2': // "Inser"
+                        getchar();
                         break;
                     default:
                         throw std::runtime_error(

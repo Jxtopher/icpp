@@ -6,7 +6,6 @@
 #include <iostream>
 
 #include "global.h"
-#include "version.h"
 
 struct Args {
     std::string config;
