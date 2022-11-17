@@ -11,6 +11,7 @@ class Brackets {
           curly_brackets(0),
           single_quotes(true),
           double_quotes(true) {}
+
     bool is_closed() const {
         return true;  // parenthesis == 0 && square_brackets == 0 &&
                       // curly_brackets == 0 && single_quotes && double_quotes;
