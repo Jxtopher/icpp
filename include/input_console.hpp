@@ -1,12 +1,12 @@
 #ifndef ICPP_INPUT_CONSOLE_H
 #define ICPP_INPUT_CONSOLE_H
 
-#include <cstdint>    // uint
-#include <cstdio>     // printf
+#include <cstdint>  // uint
+#include <cstdio>   // printf
+#include <iostream>
 #include <stdexcept>  // std::runtime_error
 #include <string>     // std::string
 #include <tuple>      // std::tuple
-#include <iostream>
 
 #include "brackets.hpp"
 #include "buffer_toggle.hpp"
@@ -103,8 +103,9 @@ class InputConsole {
 
     // Print the line with the colorarisation and good position of cursor
     void text(const std::string &current_line, uint cursor_position = 0) {
-        if (cursor_position < 0) return;
-        
+        if (cursor_position < 0)
+            return;
+
         uint mark;
         const char *color;
         std::tie(mark, color) = colorization(current_line, 0);
@@ -144,7 +145,6 @@ class InputConsole {
                 getchar();
                 char char_2 = getchar();
 
-
                 switch (char_2) {
                     case 'A':  // Arrow up
                         if (history.size() > cursor_history)
@@ -170,31 +170,30 @@ class InputConsole {
                         if (cursor_left_right < current_line.size())
                             cursor_left_right++;
                         break;
-                    case '3': // "Suppr"
-                        {
-                            getchar();
-                            if (cursor_left_right > 0) {
-                                auto it = current_line.begin();
-                                std::advance(it,
-                                            current_line.size() - cursor_left_right);
-                                cursor_left_right--;
-                                current_line.erase(it);
-                            }
+                    case '3':  // "Suppr"
+                    {
+                        getchar();
+                        if (cursor_left_right > 0) {
+                            auto it = current_line.begin();
+                            std::advance(
+                                it, current_line.size() - cursor_left_right);
+                            cursor_left_right--;
+                            current_line.erase(it);
                         }
-                        break;
-                    case 'F': // "Fin"
+                    } break;
+                    case 'F':  // "Fin"
                         cursor_left_right = 0;
                         break;
-                    case '6': // "PgSv"
+                    case '6':  // "PgSv"
                         getchar();
                         break;
-                    case '5': // "PgPr"
+                    case '5':  // "PgPr"
                         getchar();
                         break;
-                    case 'H': // "Orig"
+                    case 'H':  // "Orig"
                         cursor_left_right = current_line.size();
                         break;
-                    case '2': // "Inser"
+                    case '2':  // "Inser"
                         getchar();
                         break;
                     default:
