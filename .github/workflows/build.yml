@@ -25,7 +25,7 @@ jobs:
     container: ${{ matrix.container }}
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Install package
       run: apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install g++ cmake valgrind libcppunit-dev cppcheck clang-tidy-11 libboost-program-options-dev ccache gcovr pkg-config
